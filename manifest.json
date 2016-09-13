@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "iron form",
+    "version": "0.0.1",
+    "description": "我的第一个Chrome扩展",
+    "icons": {
+        "16": "images/16.png",
+        "48": "images/48.png",
+        "128": "images/128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "images/16.png",
+            "48": "images/48.png"
+        },
+        "default_title": "iron form",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["js/jquery-3.1.0.min.js", "js/injection.js"]
+    }]
+}
