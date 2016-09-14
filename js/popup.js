@@ -1,24 +1,28 @@
+// bind new one button click event
 $('#add').on('click', function() {
-    var el = '<div class="row">' + '<div class="col-xs-6">' + '<div class="form-group">' + '<input type="text" class="form-control input-sm iform-selector" placeholder="selector">' + '</div>' + '</div>' + '<div class="col-xs-6">' + '<div class="form-group">' + '<input type="text" class="form-control input-sm iform-value" placeholder="value">' + '</div>' + '</div>' + '</div>';
+    var el = '<div class="row">' + '<div class="col-xs-6">' + '<div class="form-group">' + '<input type="text" class="form-control input-sm iform-name" placeholder="name">' + '</div>' + '</div>' + '<div class="col-xs-6">' + '<div class="form-group">' + '<input type="text" class="form-control input-sm iform-value" placeholder="value">' + '</div>' + '</div>' + '</div>';
     $(el).insertAfter('.row:last');
 });
 
-
-
+// bind submit button click event
 $('#submit').on('click', function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        var selectors= [];
-        var values = [];
-        var selectorObj = document.getElementsByClassName('iform-selector');
-        var valueObj = document.getElementsByClassName('iform-value');
-        var i;
-        for (i = 0; i < selectorObj.length; i++) {
-            if (selectorObj[i].value !== "") {
-                selectors.push(selectorObj[i].value);
-                values.push(valueObj[i].value);
+        var rows = $('.row');
+        var data = [];
+        var subName;
+        var subValue;
+        for (var i = 0; i < rows.length; i++) {
+            subName = rows.eq(i).find('.iform-name').val();
+            subValue = rows.eq(i).find('.iform-value').val();
+            if (subName !== '' && subValue !== '') {
+                data.push({
+                    name: subName,
+                    value: subValue
+                })
             }
+
         }
-        chrome.tabs.sendMessage(tabs[0].id, { selectors: selectors, values: values }, function(response) {
-        });
+
+        chrome.tabs.sendMessage(tabs[0].id, data, function(response) {});
     });
 });
