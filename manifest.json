@@ -19,5 +19,8 @@
     "content_scripts": [{
         "matches": ["*://*/*"],
         "js": ["js/jquery-3.1.0.min.js", "js/injection.js"]
-    }]
+    }],
+    "permissions": [
+        "storage"
+    ]
 }

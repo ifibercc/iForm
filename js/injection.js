@@ -1,4 +1,5 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(request)
     for (var i = 0; i < request.length; i++) {
        var target = $('[name=' + request[i].name + ']');
        var tag = target[0].tagName || '';

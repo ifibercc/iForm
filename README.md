@@ -3,5 +3,5 @@ a chrome plugin to fill form quickly
 
 todo
 
-- [ ] background
+- [ ] localstorage
 - [ ] 接口录制
