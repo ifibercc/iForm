@@ -22,7 +22,11 @@ $('#submit').on('click', function() {
             }
 
         }
-
+        // chrome.storage.local.set({'data': data});
+        // chrome.storage.local.get('data',function(data) {
+        //     console.log(data);
+        // })
+        console.log(data)
         chrome.tabs.sendMessage(tabs[0].id, data, function(response) {});
     });
 });
